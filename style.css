@@ -1,56 +1,144 @@
 /*
- * CSS File for the solution
- * Assignment 03
- * You can modify these styles but you don't have to
- */
+* CSS File for the solution
+* Assignment 03
+* You can modify these styles but you don't have to
+*/
 
 /*
- VARIABLES
+VARIABLES
 */
 :root {
-  /* Core colours */
-  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-  --colour-amaranth: #e63946;
-  --colour-peppermint: #f1faee;
-  --colour-aquaisland: #a8dadc;
-  --colour-wedgewood: #457b9d;
-  --colour-cello: #1d3557;
+ /* Core colours */
+ /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
 
-  /* Header configuration */
-  --header-heading-colour: var(--colour-peppermint);
 
-  /* Body configuration */
-  --body-default-colour: var(--colour-cello);
-  --body-background-colour: var(--colour-peppermint);
+ /* Header configuration */
+ --header-heading-colour: var(--colour-peppermint);
+
+ /* Body configuration */
+ --body-default-colour: var(--colour-cello);
+ --body-background-colour: var(--colour-peppermint);
 }
 
 /*
-  PAGE / BODY
+ PAGE / BODY
 */
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--body-default-colour);
-  background-color: var(--body-background-colour);
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Soft gradient background */
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-main {
-  min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container { 
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
 }
 
+.todo-app {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-/****** Screen reader text utility clsas *******/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+h2 {
+    color: #f81f93;
+}
+h2 img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    padding: 0;
+    border-radius: 100%;
+    background-color: #8f1054;
+    border: 2px solid #f81f93;
+
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#input-box {
+    padding: 10px;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    width: 70%;
+}
+
+button {
+    padding: 10px;
+    background-color: #ff69b4;
+    color: rgb(26, 2, 2);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #ff85c1;
+}
+
+#list-container {
+    list-style: none;
+    padding: 0;
+}
+
+#list-container li {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+#list-container li.checked {
+    text-decoration: line-through;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #ff69b4;
+}
+
+.delete-btn:hover {
+    color: #ff85c1;
+}
+
+#task-counter {
+    margin-top: 20px;
+    color: #333;
+}
+  
+.hidden {
+    display: none;
+}
+
+#empty-state {
+    text-align: center;
+    color: #ff69b4; 
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+#empty-state {
+    text-align: center;
+    color: #ff69b4; 
+    margin-top: 20px;
 }

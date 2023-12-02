@@ -24,6 +24,41 @@
   <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
 </head>
 <body>
+  <div class="wrapper">
+    <div class="screen-backdrop"></div>
+    <div class="home-screen screen">
+      <div class="head-wrapper">
+        <div class="menu-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+          </svg>
+        </div>
+        </div>
+        </div>
+      </div>
+  <div class="container" 
+        </div> 
+    <div class="todo-app">
+        <h2>To-Do List <img src="https://i.pinimg.com/originals/32/4d/41/324d41fef3a27693459dee14e3c86a90.png" alt="To-Do List Icon"></h2>
+        <div class="row">
+            <input type="text" id="input-box" placeholder="Add a new task">
+            <button id="add-btn">Add</button>
+        </div>
+        <ul id="list-container"></ul>
+        <div id="task-counter">Tasks: 0</div>
+    </div>
+
+    <div id="empty-state" class="hidden">
+      <img src="https://i.pinimg.com/564x/6a/c2/a3/6ac2a37879a7c2473cda7a90a5c173cf.jpg" alt="barbie theme" style="max-width: 100%; height: auto;">
+  </div>
+
+  
 
   <!--
 
@@ -40,12 +75,19 @@
 
   -->
 
+  <!-- Citation 
+   https://www.toptal.com/designers/ux/empty-state-ux-design
+   chatgbt search for adding an empty state
+   https://www.w3schools.com/js/js_loop_for.asp 
+  -->
+ 
+
   <main>
     <div id="app"></div>
   </main>
 
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>
-
 </body>
+
 </html>

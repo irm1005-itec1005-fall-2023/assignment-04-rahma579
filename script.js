@@ -1,43 +1,89 @@
-/* Assignment 04: Finishing a Todo List App
- *
- * 
- *
- */
+document.addEventListener('DOMContentLoaded', function () {
+  const addButton = document.querySelector('#add-btn');
+  const inputField = document.querySelector('#input-box');
+  const listContainer = document.querySelector('#list-container');
+  const taskCounter = document.querySelector('#task-counter');
+
+  loadTasks();
+
+  addButton.addEventListener('click', function () {
+      const taskText = inputField.value.trim();
+      if (taskText) {
+          addTask(taskText);
+          inputField.value = '';
+          saveTasks();
+          updateEmptyState();
+      }
+  });
+
+  listContainer.addEventListener('click', function (e) {
+      if (e.target.tagName === 'LI') {
+          e.target.classList.toggle('checked');
+          saveTasks();
+          updateEmptyState();
+      } else if (e.target.classList.contains('delete-btn')) {
+          e.target.parentElement.remove();
+          saveTasks();
+          updateEmptyState();
+      }
+  });
+
+  function addTask(taskText) {
+      const listItem = document.createElement('li');
+      listItem.textContent = taskText;
+
+      const deleteButton = document.createElement('button');
+      deleteButton.innerHTML = '&#128465;'; 
+      deleteButton.classList.add('delete-btn');
+      listItem.appendChild(deleteButton);
 
 
-//
-// Variables
-//
-
-// Constants
-const appID = "app";
-const headingText = "To do. To done. ✅";
-
-// DOM Elements
-let appContainer = document.getElementById(appID);
-
-//
-// Functions
-//
-
-// Add a heading to the app container
-function inititialise() {
-  // If anything is wrong with the app container then end
-  if (!appContainer) {
-    console.error("Error: Could not find app contianer");
-    return;
+      listContainer.appendChild(listItem);
+      updateTaskCounter();
   }
 
-  // Create an h1 and add it to our app
-  const h1 = document.createElement("h1");
-  h1.innerText = headingText;
-  appContainer.appendChild(h1);
+  function saveTasks() {
+      const tasks = [];
+      document.querySelectorAll('#list-container li').forEach(li => {
+          tasks.push({ text: li.textContent, completed: li.classList.contains('checked') });
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      updateTaskCounter();
+  }
 
-  // Init complete
-  console.log("App successfully initialised");
-}
+  function updateTaskCounter() {
+      const taskCount = listContainer.children.length;
+      taskCounter.textContent = `Tasks: ${taskCount}`;
+      updateEmptyState();
+  }
 
-//
-// Inits & Event Listeners
-//
-inititialise();
+  function updateEmptyState() {
+      const emptyState = document.getElementById('empty-state');
+      if (listContainer.children.length === 0) {
+          emptyState.classList.remove('hidden');
+      } else {
+          emptyState.classList.add('hidden');
+      }
+  }
+
+  function loadTasks() {
+      const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      storedTasks.forEach(task => {
+          const listItem = document.createElement('li');
+          listItem.textContent = task.text;
+          if (task.completed) {
+              listItem.classList.add('checked');
+          }
+
+          const deleteButton = document.createElement('button');
+          deleteButton.innerHTML = '&#128465;';
+          deleteButton.classList.add('delete-btn');
+          listItem.appendChild(deleteButton);
+
+          listContainer.appendChild(listItem);
+      });
+      updateTaskCounter();
+  }
+
+  updateEmptyState();
+});
